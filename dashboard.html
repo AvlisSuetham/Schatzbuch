@@ -7,24 +7,27 @@
     <link rel="stylesheet" href="css/dash_style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Dashboard - Schatzbuch</h1>
-        <div class="user-info">
-            <p>Bem-vindo, <span id="username-display"></span>!</p>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#" id="available-books">Disponíveis</a></li>
-                <li><a href="#" id="rented-books">Locados</a></li>
-                <li><a href="#" id="overdue-books">Em Atraso</a></li>
-                <li><a href="#" id="logout">Sair</a></li>
-            </ul>
-        </nav>
-        <div id="content">
-            <p>Selecione uma opção acima para começar.</p>
-        </div>
-    </div>
-    <script type="module" src="js/firebaseConfig.js"></script>
+    <header>
+        <h1>Schatzbuch</h1>
+        <p>Bem-vindo, <span id="username-display">Usuário</span></p>
+        <button id="logout">Sair</button>
+    </header>
+    
+    <!-- Menu de Navegação no Topo -->
+    <nav class="top-nav">
+        <ul>
+            <li id="available-books">Livros Disponíveis</li>
+            <li id="rented-books">Livros Locados</li>
+            <li id="overdue-books">Livros em Atraso</li>
+            <li id="register-book">Cadastro de Livros</li>
+        </ul>
+    </nav>
+
+    <main class="content" id="content">
+        <h2>Bem-vindo à sua Dashboard</h2>
+        <p>Selecione uma opção no menu para começar.</p>
+    </main>
+
     <script type="module" src="js/dash.js"></script>
 </body>
 </html>

@@ -1,58 +1,72 @@
-body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom right, #000000, #008000);
-    color: #ffffff;
+* {
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    box-sizing: border-box;
 }
 
-.container {
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    width: 300px;
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4; /* Fundo leve para o blog */
+    color: #333;
+}
+
+header {
+    background: #008000; /* Fundo do cabeçalho */
+    color: white;
+    padding: 20px;
     text-align: center;
+    position: relative;
 }
 
 h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
+    margin-bottom: 10px;
 }
 
-.user-info {
-    margin-bottom: 20px;
-    text-align: left;
+#logout {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-nav {
-    margin: 20px 0;
+#logout:hover {
+    background: #c9302c;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
+/* Barra de Navegação no Topo */
+.top-nav {
+    background: #333;
+    color: white;
 }
 
-nav li {
-    margin: 10px 0;
+.top-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
 }
 
-nav a {
-    text-decoration: none;
-    color: #4CAF50;
-    font-weight: bold;
+.top-nav li {
+    padding: 15px 20px;
+    cursor: pointer;
+    color: white;
+    transition: background 0.3s;
 }
 
-nav a:hover {
-    text-decoration: underline;
+.top-nav li:hover {
+    background: #5c5a5a; /* Cor ao passar o mouse */
 }
 
-#content {
-    margin-top: 20px;
+.content {
+    margin: 20px auto;
+    max-width: 800px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     text-align: left;
 }
