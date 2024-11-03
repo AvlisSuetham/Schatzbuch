@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Schatzbuch</title>
+    <link rel="stylesheet" href="css/dash_style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard - Schatzbuch</h1>
+        <div class="user-info">
+            <p>Bem-vindo, <span id="username-display"></span>!</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" id="available-books">Disponíveis</a></li>
+                <li><a href="#" id="rented-books">Locados</a></li>
+                <li><a href="#" id="overdue-books">Em Atraso</a></li>
+                <li><a href="#" id="logout">Sair</a></li>
+            </ul>
+        </nav>
+        <div id="content">
+            <p>Selecione uma opção acima para começar.</p>
+        </div>
+    </div>
+    <script type="module" src="js/firebaseConfig.js"></script>
+    <script type="module" src="js/dash.js"></script>
+</body>
+</html>

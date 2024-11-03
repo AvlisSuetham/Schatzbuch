@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Schatzbuch</title>
-    <link rel="stylesheet" href="css/login_style.css">
+    <title>Registrar - Schatzbuch</title>
+    <link rel="stylesheet" href="css/register_style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Bem-vindo ao Schatzbuch</h1>
-        <form id="login-form">
+        <h1>Criar Conta</h1>
+        <form id="register-form">
+            <div class="input-group">
+                <label for="username">Nome de Usuário:</label>
+                <input type="text" id="username" required placeholder="Seu nome de usuário">
+            </div>
             <div class="input-group">
                 <label for="email">E-mail:</label>
                 <input type="email" id="email" required placeholder="Seu e-mail">
@@ -18,11 +22,11 @@
                 <label for="password">Senha:</label>
                 <input type="password" id="password" required placeholder="Sua senha">
             </div>
-            <button type="submit">Entrar</button>
+            <button type="submit">Registrar</button>
         </form>
-        <p class="register-link">Não tem uma conta? <a href="register.html">Registrar</a></p>
+        <p class="login-link">Já tem uma conta? <a href="index.html">Entrar</a></p>
     </div>
     <script type="module" src="js/firebaseConfig.js"></script>
-    <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/register.js"></script>
 </body>
 </html>
