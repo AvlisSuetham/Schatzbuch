@@ -1,6 +1,7 @@
 import { auth } from "./firebaseConfig.js";
 import { signOut } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, getDocs, collection, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+import { deleteDoc } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
 
 const db = getFirestore();
 const usernameDisplay = document.getElementById("username-display");
@@ -61,11 +62,14 @@ async function loadBooks(status) {
 
     const filteredBooks = books.filter(book => book.status === status);
 
-    let htmlContent = `<h2>Livros ${status.charAt(0).toUpperCase() + status.slice(1)}s</h2><table><tr><th>Nome</th><th>Autor</th><th>Ano</th><th>Gênero</th><th>Páginas</th><th>Localização</th><th>Status</th><th>Locatário</th><th>Data de Devolução</th><th>Ações</th></tr>`;
+    // Corrigido para "Livros Disponíveis" ou "Livros Locados"
+    let statusTitle = status === 'disponível' ? 'Disponíveis' : status.charAt(0).toUpperCase() + status.slice(1) + 's';
+    let htmlContent = `<h2>Livros ${statusTitle}</h2><table><tr><th>Nome</th><th>Autor</th><th>Ano</th><th>Gênero</th><th>Páginas</th><th>Localização</th><th>Status</th><th>Locatário</th><th>Data de Devolução</th><th>Ações</th></tr>`;
+    
     filteredBooks.forEach(book => {
         htmlContent += `
             <tr>
-                <td><a href="#" class="edit-book" data-id="${book.id}">${book.name}</a></td>
+                <td>${book.name}</td>
                 <td>${book.author}</td>
                 <td>${book.year}</td>
                 <td>${book.genre}</td>
@@ -74,7 +78,10 @@ async function loadBooks(status) {
                 <td>${book.status}</td>
                 <td>${book.renter || "N/A"}</td>
                 <td>${book.returnDate || "N/A"}</td>
-                <td><button class="delete-book" data-id="${book.id}">Excluir</button></td>
+                <td>
+                    <button class="edit-book" data-id="${book.id}">Editar</button>
+                    <button class="delete-book" data-id="${book.id}">Excluir</button>
+                </td>
             </tr>`;
     });
     htmlContent += `</table>`;
@@ -82,11 +89,10 @@ async function loadBooks(status) {
     document.getElementById("content").innerHTML = htmlContent;
 
     // Adicionar evento de clique para editar livros
-    const editLinks = document.querySelectorAll(".edit-book");
-    editLinks.forEach(link => {
-        link.addEventListener("click", (event) => {
-            event.preventDefault();
-            const bookId = link.getAttribute("data-id");
+    const editButtons = document.querySelectorAll(".edit-book");
+    editButtons.forEach(button => {
+        button.addEventListener("click", (event) => {
+            const bookId = button.getAttribute("data-id");
             editBook(bookId);
         });
     });
@@ -233,17 +239,9 @@ async function editBook(bookId) {
 
 // Função para excluir livro
 async function deleteBook(bookId) {
-    await setDoc(doc(db, "books", bookId), {
-        name: "", // ou qualquer dado que você queira limpar
-        author: "",
-        year: "",
-        genre: "",
-        pages: "",
-        location: "",
-        status: "disponível",
-        renter: null,
-        returnDate: null
-    });
+    const bookDoc = doc(db, "books", bookId);
+    await deleteDoc(bookDoc);
+    
     const successMessage = document.createElement('div');
     successMessage.className = 'alert success';
     successMessage.textContent = "Livro excluído com sucesso!";

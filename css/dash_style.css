@@ -116,3 +116,20 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+
+.delete-book {
+    margin-top: 10px; /* Ajuste o valor conforme necessário */
+}
+
+#logout {
+    color: white;
+    border: none;
+    padding: 10px 5px;
+    width: 30%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#logout:hover {
+    background-color: #f72f2f; /* Cor ao passar o mouse */
+}
